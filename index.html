@@ -2,9 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chronos Chronicles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕰️ Chrono Chronicles CLI</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: black;
+            color: #00FF00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .output {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div id="cli-output" class="output"></div>
+    <div id="cli-input" class="output"></div>
+</div>
 
+<script>
+    const outputDiv = document.getElementById('cli-output');
+    const inputDiv = document.getElementById('cli-input');
+
+    function slowPrint(message, delay = 50) {
+        return new Promise(resolve => {
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < message.length) {
+                    outputDiv.innerHTML += message[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    outputDiv.innerHTML += '<br>';
+                    resolve();
+                }
+            }, delay);
+        });
+    }
+
+    function getUserInput(promptText) {
+        return new Promise(resolve => {
+            slowPrint(promptText).then(() => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.style.backgroundColor = 'black';
+                input.style.color = '#00FF00';
+                input.style.border = 'none';
+                input.style.borderBottom = '1px solid #00FF00';
+                input.style.width = '100%';
+                input.style.fontFamily = 'Courier New, Courier, monospace';
+                inputDiv.appendChild(input);
+                input.focus();
+                input.onkeydown = function (e) {
+                    if (e.key === 'Enter') {
+                        const inputValue = input.value.trim().toLowerCase();
+                        inputDiv.removeChild(input);
+                        outputDiv.innerHTML += `<br><strong>${inputValue}</strong><br>`;
+                        resolve(inputValue);
+                    }
+                };
+            });
+        });
+    }
+
+    async function startGame() {
+        await slowPrint("Welcome to Chrono Chronicles! 🕰️");
+        await slowPrint("You find yourself in a sealed chamber with a strange device on your wrist.");
+        await slowPrint("A robotic voice echoes: 'You have been chosen to restore the timeline.'");
+        await slowPrint("Which portal do you choose: (1) Broken Hourglass ⏳, (2) Spinning Gear ⚙️, or (3) Infinity Symbol ♾️?");
+
+        let choice = await getUserInput("Enter your choice: ");
+        if (choice === "1") {
+            await pastPath();
+        } else if (choice === "2") {
+            await futurePath();
+        } else {
+            await alternatePath();
+        }
+    }
+
+    async function pastPath() {
+        await slowPrint("You step through the portal and arrive in an ancient kingdom filled with turmoil.");
+        await slowPrint("A war is brewing over an oracle said to predict the future.");
+        await slowPrint("Do you: (1) Help the king find the oracle 🏰, (2) Steal the oracle for yourself 🔮, or (3) Destroy the oracle 💥?");
+
+        let choice = await getUserInput("Enter your choice: ");
+        if (choice === "1") {
+            await slowPrint("The king finds the oracle, but he uses it for war. The timeline begins to crack.");
+            await slowPrint("Do you: (a) Convince him to use it wisely 💡, (b) Let him wield its power unchecked ⚔️?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("The timeline is restored. You return home, safe and sound. 🏠 Congratulations, you have succeeded!");
+            } else {
+                await slowPrint("History is rewritten. You fade into obscurity. 😔 Game Over.");
+            }
+        } else if (choice === "2") {
+            await slowPrint("You steal the oracle, but reality begins to collapse around you. Time itself begins to warp.");
+            await slowPrint("Do you: (a) Use it to escape 🔄, (b) Try to rewrite your history 📝?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("You escape, but find yourself lost in time... 😵 Your journey ends here.");
+            } else {
+                await slowPrint("A paradox consumes you, collapsing the fabric of time. ❌ Game Over.");
+            }
+        } else {
+            await slowPrint("Destroying the oracle fractures time itself.");
+            await slowPrint("Do you: (a) Reassemble it 🔧, (b) Let time reset naturally ⏳?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("You gain temporary control, but reality becomes unstable. ⚠️ Unstable Outcome.");
+            } else {
+                await slowPrint("You lose your memory and are thrown into another timeline. 🌀 Game Over.");
+            }
+        }
+    }
+
+    window.onload = startGame;
+</script>
 </body>
 </html>
