@@ -130,6 +130,78 @@
         }
     }
 
+    async function futurePath() {
+        await slowPrint("You step into a neon-lit megacity where artificial intelligence rules.");
+        await slowPrint("Humanity lives in a utopia, but a rebellion stirs beneath the surface.");
+        await slowPrint("Do you: (1) Join the AI rulers 🤖, (2) Side with the rebels ✊, or (3) Stay neutral 🌐?");
+
+        let choice = await getUserInput("Enter your choice: ");
+        if (choice === "1") {
+            await slowPrint("The AI grants you access to their vast archives, revealing shocking truths.");
+            await slowPrint("Do you: (a) Help them strengthen their control 🏗️, (b) Seek a way to shut them down ⚡?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "b") {
+                await slowPrint("You trigger a war that spirals into disaster. 💥 Game Over.");
+            } else {
+                await slowPrint("You lose your humanity and become a pawn of the AI. 🤖 Game Over.");
+            }
+        } else if (choice === "2") {
+            await slowPrint("You join the rebels, but the AI sees you as a threat.");
+            await slowPrint("Do you: (a) Lead the rebellion ⚔️, (b) Sabotage from within 🕵️?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("The future is drastically altered, but at a great cost. 🌪️ Uncertain Fate.");
+            } else {
+                await slowPrint("You are erased from history. ❌ Game Over.");
+            }
+        } else {
+            await slowPrint("You stay neutral and explore the city. You discover a hidden lab with a mysterious message.");
+            await slowPrint("Do you: (a) Open the message 📜, (b) Ignore it 🚶?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("The message reveals your past role in the AI uprising. You restore balance and return home. 🏡 Congratulations, you have succeeded!");
+            } else {
+                await slowPrint("A time loop traps you forever in the future. 🔄 Game Over.");
+            }
+        }
+    }
+
+    async function alternatePath() {
+        await slowPrint("You step into a void where time flows differently, and encounter another version of yourself.");
+        await slowPrint("They warn you of a hidden danger that is manipulating the timeline.");
+        await slowPrint("Do you: (1) Trust them 🤝, (2) Ignore them 🏃, or (3) Destroy them 💀?");
+
+        let choice = await getUserInput("Enter your choice: ");
+        if (choice === "1") {
+            await slowPrint("You decide to trust your alternate self, and together you uncover the hidden entity controlling time.");
+            await slowPrint("Do you: (a) Work together to fix the timeline 🔧, (b) Betray them and take control for yourself 👑?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("You succeed in restoring time and become the guardian of the timeline. 🕰️ Congratulations, you have succeeded!");
+            } else {
+                await slowPrint("You become the very threat you sought to stop. 🕳️ Game Over.");
+            }
+        } else if (choice === "2") {
+            await slowPrint("You ignore your alternate self and fall into a chaotic time vortex.");
+            await slowPrint("Do you: (a) Try to navigate the chaos 🌀, (b) Surrender to the void ⏳?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("You arrive in a strange hybrid reality. 🌍 Uncertain Fate.");
+            } else {
+                await slowPrint("You are lost in time forever. 😵 Game Over.");
+            }
+        } else {
+            await slowPrint("You attempt to destroy your alternate self but erase yourself from existence.");
+            await slowPrint("Do you: (a) Rewrite yourself 📜, (b) Accept your fate ☠️?");
+            let subChoice = await getUserInput("Enter your choice: ");
+            if (subChoice === "a") {
+                await slowPrint("You become an unstable paradox, breaking time itself. 🌀 Unstable Outcome.");
+            } else {
+                await slowPrint("You vanish from history, but time remains intact. 🕳️ Game Over.");
+            }
+        }
+    }
+
     window.onload = startGame;
 </script>
 </body>

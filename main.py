@@ -4,7 +4,8 @@ import time
 print("\nWelcome to Chrono Chronicles! 🕰️\n")
 time.sleep(1)
 print(
-    "You find yourself in a sealed chamber with a strange device on your wrist. \nA robotic voice echoes: 'You have been chosen to restore the timeline.'")
+    "You find yourself in a sealed chamber with a strange device on your wrist. \nA robotic voice echoes: "
+    "'You have been chosen to restore the timeline.'")
 time.sleep(1)
 print("Which portal do you choose: (1) Broken Hourglass ⏳, (2) Spinning Gear ⚙️, or (3) Infinity Symbol ♾️?")
 time.sleep(1)
